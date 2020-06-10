@@ -1,24 +1,42 @@
-# enrevuer
+## 英国H5改版
+```
+目录结构
+├── babel.config.js
+├── package-lock.json
+├── package.json
+├── public
+│   ├── favicon.ico
+│   └── index.html
+├── README.md
+├── src
+│   ├── App.vue
+│   ├── assets
+│   │   └── logo.png
+│   ├── components
+│   │   └── HelloWorld.vue
+│   ├── main.js
+│   ├── plugins
+│   │   └── axios.js
+│   ├── router
+│   │   └── index.js
+│   ├── store
+│   │   └── index.js
+│   ├── styles.scss
+│   └── views
+│       ├── About.vue
+│       └── Home.vue
+└── vue.config.js
+```
 
-## Project setup
+### 插件
+[commitizen](https://github.com/commitizen/cz-cli)
 ```
-npm install
-```
+全局安装：
+npm install commitizen -g
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+项目安装：
+commitizen init cz-conventional-changelog --save-dev --save-exact
 
-### Compiles and minifies for production
+项目提交：
+git cz
 ```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

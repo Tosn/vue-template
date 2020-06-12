@@ -34,6 +34,20 @@ _axios.interceptors.response.use(
     return response
   },
   function (error) {
+    switch (error.response.status) {
+      case 404:
+        console.log('接口找不到')
+        break
+      case 403:
+        console.log('没有权限')
+        break
+      case 401:
+        console.log('没有登录')
+        break
+      case 500:
+        console.log('network error')
+        break
+    }
     // Do something with response error
     return Promise.reject(error)
   }

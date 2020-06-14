@@ -6,20 +6,20 @@ const api = {
   getUserInfo: '/api/getUserInfo'
 }
 
-const LOGIN = (data) => {
+const login = (data) => {
   return axios.post(api.login, data)
 }
 
-const LOGIN_OUT = () => {
+const loginOut = () => {
   return axios.post(api.loginOut)
 }
 
-const GET_USER_INFO = (data) => {
+const getUserInfo = (data) => {
   return axios.post(api.getUserInfo)
 }
 
 export {
-  LOGIN,
-  LOGIN_OUT,
-  GET_USER_INFO
+  login,
+  loginOut,
+  getUserInfo
 }

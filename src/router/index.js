@@ -1,12 +1,37 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Layout from '@/layout/index'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '*',
+    meta: {
+      whiteList: true
+    },
+    component: () => import('@/views/Error.vue')
+  },
+  {
     path: '/',
-    component: () => import('@/views/Index')
+    redirect: '/index',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        meta: {
+          whiteList: true
+        },
+        component: () => import('@/views/Index')
+      }
+    ]
+  },
+  {
+    path: '/login',
+    meta: {
+      whiteList: true
+    },
+    component: () => import('@/views/Login')
   }
 ]
 

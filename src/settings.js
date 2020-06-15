@@ -6,3 +6,5 @@ export const STORAGE_OPTIONS = {
 }
 
 export const STORAGE_TIME = 7 * 24 * 60 * 60 * 1000
+
+export const PAGE_TITLE = '中国电信CTExcel'

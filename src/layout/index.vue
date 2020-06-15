@@ -11,8 +11,8 @@
 <script>
 export default {
   components: {
-    BaseHeader: () => import('./components/Header.vue'),
-    BaseFooter: () => import('./components/Footer.vue')
+    BaseHeader: () => import('./components/BaseHeader.vue'),
+    BaseFooter: () => import('./components/BaseFooter.vue')
   }
 }
 </script>

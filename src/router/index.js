@@ -9,20 +9,25 @@ const routes = [
     path: '*',
     meta: {
       whiteList: true
+
     },
-    component: () => import('@/views/Error.vue')
+    component: () => import('@/views/error.vue')
   },
   {
     path: '/',
     redirect: '/index',
+    meta: {
+      title: '框架'
+    },
     component: Layout,
     children: [
       {
         path: 'index',
         meta: {
-          whiteList: true
+          whiteList: true,
+          title: '首页'
         },
-        component: () => import('@/views/Index')
+        component: () => import('@/views/index')
       }
     ]
   },
@@ -31,7 +36,7 @@ const routes = [
     meta: {
       whiteList: true
     },
-    component: () => import('@/views/Login')
+    component: () => import('@/views/login')
   }
 ]
 
@@ -40,5 +45,18 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+const IconRoute = [{
+  path: '/icons',
+  meta: {
+    whiteList: true
+  },
+  component: () => import('@/icons/icons.vue')
+}]
+
+// 如果是开发环境，添加icons路由
+if (process.env.NODE_ENV === 'development') {
+  router.addRoutes(IconRoute)
+}
 
 export default router

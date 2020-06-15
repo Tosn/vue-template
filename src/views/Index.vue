@@ -1,21 +1,38 @@
 <template>
   <div>
     {{ruleForm}}
+    {{countInfo}}
+    {{'1234567890' | tl(3, -2, true, 10)}}
+    <el-button @click="istake = !istake">脱敏切换</el-button>
+    {{'1234567890' | tl(4, 6, istake)}}
+    <p>filter: {{userInfo && userInfo.username | bl}}</p>
+    <h3>1231<svg-icon @click="$router.go(-1)" iconClass="arrow-left"></svg-icon></h3>
     <el-form :model="ruleForm" ref="ruleForm" :rules="rules">
       <x-input label="活动名称" prop="name" v-model="ruleForm.name" placeholder="请输入活动名称"></x-input>
       <x-select label="活动区域" prop="region" v-model="ruleForm.region" placeholder="请选择活动区域" :options=options></x-select>
       <el-button @click="submitForm('ruleForm')">submit</el-button>
       <el-button @click="resetForm('ruleForm')">reset</el-button>
+      <count-down-button :time="20" text="获取手机验证码" countText="还有多少 s结束"></count-down-button>
+      <el-button @click="showToast">toast</el-button>
     </el-form>
+
   </div>
 </template>
 
 <script>
 import FormMixin from '@/mixins/FormMixin'
+import { CountDown } from '@/mixins/RegMixin'
+import CountDownButton from '@/components/Register/CountDownButton'
+import { msisdn } from '@/utils/validate'
 export default {
-  mixins: [FormMixin],
+  mixins: [FormMixin, CountDown],
+  components: {
+    CountDownButton
+  },
   data () {
     return {
+      istake: false,
+      userInfo: null,
       options: [
         {
           label: 'AA',
@@ -37,10 +54,7 @@ export default {
         desc: ''
       },
       rules: {
-        name: [
-          { required: true, message: '请输入活动名称', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-        ],
+        name: msisdn,
         region: [
           { required: true, message: '请选择活动区域', trigger: 'change' }
         ],
@@ -63,7 +77,7 @@ export default {
     }
   },
   mounted () {
-    // this.$axios.post('/123123')
+
   },
   methods: {
     submitForm () {
@@ -74,11 +88,23 @@ export default {
         .catch(() => {
           console.log('error')
         })
+    },
+    showToast () {
+      this.$toast(123123, {
+        iconClass: 'success'
+      }).then(() => {
+        console.log('toast remove')
+      })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.slide-fade-enter-active, .slide-fade-leave-active {
+  transition: all 1s;
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  opacity: 0;
+}
 </style>
